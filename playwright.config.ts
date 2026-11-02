@@ -17,18 +17,18 @@ export default defineConfig({
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: 2,
-  /* Opt out of parallel tests on CI. */
+  /* Only running it locally and ant 1 retry */
+  retries: 1,
+  /* Adding and changing the same items in the database so want them to run independently not together*/
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_URL ??'http://localhost:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Trace: i can see where it failed in each failed test Screenshot also does the same */
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure'
   },
