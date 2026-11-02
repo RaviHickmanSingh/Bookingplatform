@@ -258,7 +258,7 @@ export default function BookingsPage() {
         <h2 className="text-lg font-semibold">{isAdmin ? t("allBookings") : t("myBookings")}</h2>
         <div className="mt-2 space-y-2">
           {bookings.map((b) => (
-            <div key={b.id} className="rounded border bg-white p-4 flex justify-between items-start">
+            <div data-testid="booking-item" key={b.id} className="rounded border bg-white p-4 flex justify-between items-start">
               <div>
                 <p className="font-medium">{b.date}</p>
                 {isAdmin && (

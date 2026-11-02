@@ -27,8 +27,7 @@ class LoginPage {
 
     async checkedLoggedIn(){
         await this.page.waitForLoadState();
-        await expect(this.page).toHaveURL('/lakeview-bowls');
-        await expect(this.page.getByRole('heading', { name: 'Lakeview Bowls Club' })).toBeVisible();
+        await expect(this.page.getByRole('button', { name: 'Sign Out' })).toBeVisible();
     }
 
 }
