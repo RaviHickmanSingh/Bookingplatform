@@ -1,4 +1,4 @@
-import { type Locator, type Page } from '@playwright/test';
+import { type Locator, type Page, expect } from '@playwright/test';
 
 export class HomePage {
     readonly page:Page;
@@ -11,6 +11,11 @@ export class HomePage {
 
     async clickLoginButton(){
         await this.loginButton.click();
+    }
+
+    async checkHomePage(){
+        await expect(this.page).toHaveTitle(/Club Management Platform/);
+        await expect(this.page.getByText("Multi-tenant bowling club platform", {exact: true})).toBeVisible();
     }
 }
 

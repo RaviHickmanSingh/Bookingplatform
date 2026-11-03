@@ -1,26 +1,20 @@
-import { test, expect, type Page } from '@playwright/test';
-import { HomePage } from './pages/home-page';
-import  LoginPage  from './pages/login-page';
-import Email from 'next-auth/providers/email';
+import { test, expect } from './fixtures';
+// import Email from 'next-auth/providers/email';
 
-let homePage: HomePage;
-let loginPage: LoginPage;
 
 test.beforeEach(async ({page}) => {
     await page.goto('/');
     await page.waitForLoadState();
-    homePage = new HomePage(page);
-    loginPage = new LoginPage(page);
 });
 
 test.describe('Login Tests', { tag: '@smoke' }, () => {
     test.use({ storageState: 'playwright/.auth/user.json' });
-    test('Login valid', async ({page}) => {
+    test('Login valid', async ({page, loginPage}) => {
         await page.getByRole('link', { name: 'L Lakeview Bowls Club' }).click();
         await loginPage.checkedLoggedIn();
         await page.getByRole('button', { name: 'Sign Out' }).click();
     });
-    test('Sign out', async ({page}) => {
+    test('Sign out', async ({page, loginPage}) => {
         await page.getByRole('link', { name: 'L Lakeview Bowls Club' }).click();
         await loginPage.checkedLoggedIn();
         await expect(page.getByRole('button', { name: 'Sign Out' })).toBeVisible();
@@ -32,7 +26,7 @@ test.describe('Login Tests', { tag: '@smoke' }, () => {
     })
 });
 
-test('invalid Login Test', { tag: '@smoke' }, async({ page }) => {
+test('invalid Login Test', { tag: '@smoke' }, async({ page, homePage, loginPage }) => {
     await homePage.clickLoginButton();
     await loginPage.doLogin('playwright@test.com', 'invalid');
     await expect(page.getByText("Invalid email or password", {exact: true})).toBeVisible();
