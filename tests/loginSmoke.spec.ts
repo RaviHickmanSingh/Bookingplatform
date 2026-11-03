@@ -9,19 +9,20 @@ test.beforeEach(async ({page}) => {
 
 test.describe('Login Tests', { tag: '@smoke' }, () => {
     test.use({ storageState: 'playwright/.auth/user.json' });
-    test('Login valid', async ({page, loginPage}) => {
+
+    test.beforeEach(async ({page}) => {
         await page.getByRole('link', { name: 'L Lakeview Bowls Club' }).click();
+});
+    test('Login valid', async ({page, loginPage}) => {
         await loginPage.checkedLoggedIn();
         await page.getByRole('button', { name: 'Sign Out' }).click();
     });
-    test('Sign out', async ({page, loginPage}) => {
-        await page.getByRole('link', { name: 'L Lakeview Bowls Club' }).click();
+    test('Sign out', async ({page, loginPage, homePage}) => {
         await loginPage.checkedLoggedIn();
         await expect(page.getByRole('button', { name: 'Sign Out' })).toBeVisible();
         await page.getByRole('button', { name: 'Sign Out' }).click();
         await expect(page).toHaveURL('/');
-        await expect(page).toHaveTitle(/Club Management Platform/);
-        await expect(page.getByText("Multi-tenant bowling club platform", {exact: true})).toBeVisible();
+        await homePage.checkHomePage();
 
     })
 });
