@@ -1,4 +1,4 @@
-import { test, expect } from './fixtures';
+import { test } from './utils/fixtures';
 import { routes } from './utils/routes';
 import { randomRegisterDetails } from './utils/helpers';
 

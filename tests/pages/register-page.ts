@@ -1,12 +1,4 @@
-//   await page.getByRole('link', { name: 'Register' }).click();
-//   await page.getByRole('textbox', { name: 'Name' }).click();
-//   await page.getByRole('textbox', { name: 'Email' }).click();
-//   await page.getByRole('textbox', { name: 'Password' }).click();
-//   await page.getByRole('textbox', { name: 'Club slug (optional)' }).click();
-//   await page.getByRole('button', { name: 'Register' }).click();
-// });
-
-import { type Page, type Locator , expect } from '@playwright/test';
+import { type Page, type Locator } from '@playwright/test';
 
 class RegisterPage {
     readonly page: Page;

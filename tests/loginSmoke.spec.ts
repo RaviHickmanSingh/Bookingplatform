@@ -1,7 +1,6 @@
-import { test, expect } from './fixtures';
+import { test, expect } from './utils/fixtures';
 import { routes } from './utils/routes';
 import { credentials } from './utils/credentials';
-
 
 test.beforeEach(async ({page}) => {
     await page.goto(routes.home);

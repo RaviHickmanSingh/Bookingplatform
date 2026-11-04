@@ -1,7 +1,6 @@
-import { test, expect } from './fixtures';
+import { test, expect } from './utils/fixtures';
 import { routes } from './utils/routes';
 import { bookingDateHelper } from './utils/helpers';
-import BookingPage from './pages/booking-page';
 
 test.beforeEach(async ({ page, dashboardPage }) => {
     await page.goto(routes.lakeview);
