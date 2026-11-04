@@ -1,9 +1,9 @@
 import { test, expect } from './fixtures';
-// import Email from 'next-auth/providers/email';
+import { routes } from './utils/routes';
 
 
 test.beforeEach(async ({page}) => {
-    await page.goto('/');
+    await page.goto(routes.home);
     await page.waitForLoadState();
 });
 
@@ -20,14 +20,14 @@ test.describe('Login Tests', { tag: '@smoke' }, () => {
     test('Sign out', async ({page, homePage, dashboardPage}) => {
         await dashboardPage.checkLoggedIn();
         await dashboardPage.clickSignOut();
-        await expect(page).toHaveURL('/');
+        await expect(page).toHaveURL(routes.home);
         await homePage.checkHomePage();
 
     })
 });
 
-test('invalid Login Test', { tag: '@smoke' }, async({ page, homePage, loginPage }) => {
+test('Invalid login test', { tag: '@smoke' }, async({ page, homePage, loginPage }) => {
     await homePage.clickLoginButton();
     await loginPage.doLogin('playwright@test.com', 'invalid');
-    await expect(page.getByText("Invalid email or password", {exact: true})).toBeVisible();
+    await loginPage.checkInvalidError();
 });

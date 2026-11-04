@@ -1,6 +1,7 @@
 import { test } from './fixtures';
+import { routes } from './utils/routes';
 
 test('Page title and heading', { tag: '@smoke' }, async ({page, homePage}) => {
-  await page.goto('/');
+  await page.goto(routes.home);
   await homePage.checkHomePage();
 })
