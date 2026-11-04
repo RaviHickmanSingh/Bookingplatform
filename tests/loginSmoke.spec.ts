@@ -1,5 +1,6 @@
 import { test, expect } from './fixtures';
 import { routes } from './utils/routes';
+import { credentials } from './utils/credentials';
 
 
 test.beforeEach(async ({page}) => {
@@ -26,8 +27,9 @@ test.describe('Login Tests', { tag: '@smoke' }, () => {
     })
 });
 
-test('Invalid login test', { tag: '@smoke' }, async({ page, homePage, loginPage }) => {
+test('Invalid login test', { tag: '@smoke' }, async({ homePage, loginPage }) => {
     await homePage.clickLoginButton();
-    await loginPage.doLogin('playwright@test.com', 'invalid');
+    await loginPage.doLogin(credentials.email, credentials.invalidPassword);
     await loginPage.checkInvalidError();
 });
+
