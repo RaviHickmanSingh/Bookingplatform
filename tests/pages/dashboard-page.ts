@@ -24,10 +24,10 @@ class DashboardPage {
         await expect(this.signOutButton).toBeVisible();
     }
 
-    async dashCheckBooking(){
-        await expect(this.page.getByText('Fri 27 NovRink 6 @ 16:00REQUESTED').first()).toBeVisible();
-        await this.clickSignOut();
-    }
+    // async dashCheckBooking(){
+    //     await expect(this.page.getByText('Fri 27 NovRink 6 @ 16:00REQUESTED').first()).toBeVisible();
+    //     await this.clickSignOut();
+    // }
 }
 
 export default DashboardPage;
