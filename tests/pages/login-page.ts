@@ -6,13 +6,15 @@ class LoginPage {
     readonly email: Locator;
     readonly password: Locator;
     readonly invalidError: Locator;
+    readonly registerConfirm: Locator;
 
     constructor(page:Page){
         this.page = page;
         this.signInButton = page.getByRole('button', { name: 'Sign In' });
         this.email = page.getByRole('textbox', { name: 'Email' });
         this.password = page.getByRole('textbox', { name: 'Password' });
-        this.invalidError = page.getByText("Invalid email or password", {exact: true})
+        this.invalidError = page.getByText("Invalid email or password", {exact: true});
+        this.registerConfirm = page.getByText('Registration successful!');
     }
     async fillEmail(email: string) {
         await this.email.fill(email);
@@ -27,6 +29,9 @@ class LoginPage {
     }
     async checkInvalidError(){
         await expect(this.invalidError).toBeVisible();
+    }
+    async checkRegister(){
+        await expect(this.registerConfirm).toBeVisible();
     }
 
 }

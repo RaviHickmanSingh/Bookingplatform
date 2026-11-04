@@ -3,12 +3,14 @@ import { HomePage } from './pages/home-page';
 import LoginPage from './pages/login-page';
 import BookingPage from './pages/booking-page';
 import DashboardPage from './pages/dashboard-page';
+import RegisterPage from './pages/register-page';
 
 type Pages = {
   homePage: HomePage;
   loginPage: LoginPage;
   bookingPage: BookingPage;
   dashboardPage: DashboardPage;
+  registerPage: RegisterPage;
 };
 
 export const test = base.extend<Pages>({
@@ -23,6 +25,9 @@ export const test = base.extend<Pages>({
     },
     dashboardPage: async ({ page }, use) => {
         await use(new DashboardPage(page)); 
+    },
+    registerPage: async ({ page }, use) => {
+        await use(new RegisterPage(page)); 
     }
 });
 

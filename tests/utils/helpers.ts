@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 
 export const bookingHelper = {
     rink1 : {
@@ -7,4 +8,10 @@ export const bookingHelper = {
 
 export const bookingDateHelper = {
     date1: '2026-11-27'
+}
+
+export const randomRegisterDetails = {
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+    slug: 'lakeview-bowls'
 }
