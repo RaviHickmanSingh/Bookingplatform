@@ -2,11 +2,13 @@ import { test as base, expect } from '@playwright/test';
 import { HomePage } from './pages/home-page';
 import LoginPage from './pages/login-page';
 import BookingPage from './pages/booking-page';
+import DashboardPage from './pages/dashboard-page';
 
 type Pages = {
   homePage: HomePage;
   loginPage: LoginPage;
   bookingPage: BookingPage;
+  dashboardPage: DashboardPage;
 };
 
 export const test = base.extend<Pages>({
@@ -18,7 +20,10 @@ export const test = base.extend<Pages>({
     },
     bookingPage: async ({ page }, use) => {
         await use(new BookingPage(page));
-  },
+    },
+    dashboardPage: async ({ page }, use) => {
+        await use(new DashboardPage(page)); 
+    }
 });
 
 export { expect };

@@ -1,15 +1,12 @@
-import { test as setup, expect } from '@playwright/test';
-import { HomePage } from '../tests/pages/home-page';
-import LoginPage from '../tests/pages/login-page';
+import { test as setup, expect } from './fixtures';
 
 const authFile = 'playwright/.auth/user.json';
 
-setup('authenticate', async ({ page }) => {
+setup('authenticate', async ({ page, homePage, loginPage, dashboardPage }) => {
     await page.goto('/');
-    await new HomePage(page).clickLoginButton();
+    await homePage.clickLoginButton();
     await expect(page).toHaveURL('/auth/login');
-    const loginPage = new LoginPage(page);
     await loginPage.doLogin('playwright@test.com', 'playwright');
-    await loginPage.checkedLoggedIn();
+    await dashboardPage.checkLoggedIn();
     await page.context().storageState({ path: authFile });
 })

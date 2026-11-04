@@ -25,11 +25,6 @@ class LoginPage {
         await this.signInButton.click();
     }
 
-    async checkedLoggedIn(){
-        await this.page.waitForLoadState();
-        await expect(this.page.getByRole('button', { name: 'Sign Out' })).toBeVisible();
-    }
-
 }
 
 export default LoginPage;

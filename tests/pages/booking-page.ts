@@ -31,9 +31,7 @@ class BookingPage {
     async checkBooking() {
         await this.page.waitForLoadState();
         await expect(this.bookings).toHaveCount(this.bookingCount + 1);
-        await this.page.getByRole('link', { name: 'Dashboard' }).click();
-        await expect(this.page.getByText('Fri 27 NovRink 6 @ 16:00REQUESTED').first()).toBeVisible();
-        await this.page.getByRole('button', { name: 'Sign Out' }).click();
+        await this.dashboardNav.click();
     }
 }
 

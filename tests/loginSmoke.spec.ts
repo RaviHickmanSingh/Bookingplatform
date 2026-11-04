@@ -10,17 +10,16 @@ test.beforeEach(async ({page}) => {
 test.describe('Login Tests', { tag: '@smoke' }, () => {
     test.use({ storageState: 'playwright/.auth/user.json' });
 
-    test.beforeEach(async ({page}) => {
-        await page.getByRole('link', { name: 'L Lakeview Bowls Club' }).click();
+    test.beforeEach(async ({homePage }) => {
+        await homePage.openLakeview();
 });
-    test('Login valid', async ({page, loginPage}) => {
-        await loginPage.checkedLoggedIn();
-        await page.getByRole('button', { name: 'Sign Out' }).click();
+    test('Login valid', async ({dashboardPage}) => {
+        await dashboardPage.checkLoggedIn();
+        await dashboardPage.clickSignOut();
     });
-    test('Sign out', async ({page, loginPage, homePage}) => {
-        await loginPage.checkedLoggedIn();
-        await expect(page.getByRole('button', { name: 'Sign Out' })).toBeVisible();
-        await page.getByRole('button', { name: 'Sign Out' }).click();
+    test('Sign out', async ({page, homePage, dashboardPage}) => {
+        await dashboardPage.checkLoggedIn();
+        await dashboardPage.clickSignOut();
         await expect(page).toHaveURL('/');
         await homePage.checkHomePage();
 
