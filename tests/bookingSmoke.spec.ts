@@ -7,14 +7,9 @@ test.beforeEach(async ({ page, dashboardPage }) => {
     await dashboardPage.clickBook();
 });
 
-test.afterEach(async ({ bookingPage, dashboardPage }) => {
-    await bookingPage.gotoDashboard();
-    await dashboardPage.clickSignOut();
-})
-
 test.describe('Booking journey', { tag: '@smoke' }, () => {
     test.use({ storageState: 'playwright/.auth/user.json' });
-    test('Booking journey', async ({ page, bookingPage}) => {
+    test('Booking journey', async ({ page, bookingPage }) => {
         await expect(page).toHaveURL(routes.bookings);
         await bookingPage.doBooking(bookingDateHelper.date1);
         await bookingPage.checkBooking();
