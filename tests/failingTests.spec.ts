@@ -30,6 +30,7 @@ test.describe('Registering without a slug', { tag: '@defect',
         description: 'DEF-007 Registering without a slug - dashboard does not show up '
     }
 }, () => {
+    test.use({ storageState: { cookies: [], origins: [] } });
     test.beforeEach(async ({ page}) => {
         await page.goto(routes.home);
         await page.waitForLoadState();

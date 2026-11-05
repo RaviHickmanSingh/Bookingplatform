@@ -2,6 +2,8 @@ import { test } from './utils/fixtures';
 import { routes } from './utils/routes';
 import { randomRegisterDetails } from './utils/helpers';
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.beforeEach(async ({page}) => {
     await page.goto(routes.home);
     await page.waitForLoadState();

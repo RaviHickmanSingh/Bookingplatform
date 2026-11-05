@@ -23,6 +23,8 @@ const invalidRegistrations = [
     },
 ];
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.beforeEach(async ({page}) => {
     await page.goto(routes.home);
     await page.waitForLoadState();

@@ -8,7 +8,6 @@ test.beforeEach(async ({page}) => {
 });
 
 test.describe('Login Tests', { tag: '@smoke' }, () => {
-    test.use({ storageState: 'playwright/.auth/user.json' });
 
     test.beforeEach(async ({homePage }) => {
         await homePage.openLakeview();
@@ -20,10 +19,13 @@ test.describe('Login Tests', { tag: '@smoke' }, () => {
         await homePage.checkHomePage();
     })
 });
+test.describe('Invalid login', () => {
+    test.use({ storageState: { cookies: [], origins: [] } });
 
-test('Invalid login test', { tag: '@smoke' }, async({ homePage, loginPage }) => {
+    test('Invalid login test', { tag: '@smoke' }, async({ homePage, loginPage }) => {
     await homePage.clickLoginButton();
     await loginPage.doLogin(credentials.email, credentials.invalidPassword);
     await loginPage.checkInvalidError();
 });
+})
 
