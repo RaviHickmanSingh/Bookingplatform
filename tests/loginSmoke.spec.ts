@@ -14,16 +14,11 @@ test.describe('Login Tests', { tag: '@smoke' }, () => {
     test.beforeEach(async ({homePage }) => {
         await homePage.openLakeview();
 });
-    test('Login valid', async ({dashboardPage}) => {
-        await dashboardPage.checkLoggedIn();
-        await dashboardPage.clickSignOut();
-    });
-    test('Sign out', async ({page, homePage, dashboardPage}) => {
+    test('Login valid and Sign out', async ({page, homePage, dashboardPage}) => {
         await dashboardPage.checkLoggedIn();
         await dashboardPage.clickSignOut();
         await expect(page).toHaveURL(routes.home);
         await homePage.checkHomePage();
-
     })
 });
 
