@@ -14,7 +14,7 @@ test.afterEach(async ({ bookingPage, dashboardPage }) => {
 
 test.describe('Booking journey', { tag: '@smoke' }, () => {
     test.use({ storageState: 'playwright/.auth/user.json' });
-    test('Booking journey', async ({ page, bookingPage, dashboardPage }) => {
+    test('Booking journey', async ({ page, bookingPage}) => {
         await expect(page).toHaveURL(routes.bookings);
         await bookingPage.doBooking(bookingDateHelper.date1);
         await bookingPage.checkBooking();
