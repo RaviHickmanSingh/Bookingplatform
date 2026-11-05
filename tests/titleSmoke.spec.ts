@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { test } from './fixtures';
+import { routes } from './utils/routes';
 
-test('Page title and heading', { tag: '@smoke' }, async ({page}) => {
-  await page.goto('/');
-  await expect(page).toHaveTitle(/Club Management Platform/);
-  await expect(page.getByText("Multi-tenant bowling club platform", {exact: true})).toBeVisible();
+test('Page title and heading', { tag: '@smoke' }, async ({page, homePage}) => {
+  await page.goto(routes.home);
+  await homePage.checkHomePage();
 })

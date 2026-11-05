@@ -1,24 +1,17 @@
-import { test, expect, type Page } from '@playwright/test';
-import { HomePage } from './pages/home-page';
-import BookingPage from './pages/booking-page';
+import { test, expect } from './fixtures';
+import { routes } from './utils/routes';
+import { bookingDateHelper } from './utils/helpers';
 
-
-let homePage: HomePage;
-let bookingPage: BookingPage;
-
-test.beforeEach(async ({page}) => {
-    await page.goto('/');
-    await page.waitForLoadState();
-    homePage = new HomePage(page);
-    bookingPage = new BookingPage(page);
+test.beforeEach(async ({ page, dashboardPage }) => {
+    await page.goto(routes.lakeview);
+    await dashboardPage.clickBook();
 });
 
 test.describe('Booking journey', { tag: '@smoke' }, () => {
     test.use({ storageState: 'playwright/.auth/user.json' });
-    test('Booking journey', async ({ page }) => {
-        await page.goto('/lakeview-bowls');
-        await page.getByRole('link', { name: 'Book Now' }).click();
-        await bookingPage.doBooking('2026-11-27');
+    test('Booking journey', async ({ page, bookingPage }) => {
+        await expect(page).toHaveURL(routes.bookings);
+        await bookingPage.doBooking(bookingDateHelper.date1);
         await bookingPage.checkBooking();
     });
 })
