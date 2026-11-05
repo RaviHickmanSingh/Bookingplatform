@@ -19,6 +19,11 @@ class RegisterPage {
         await this.password.fill(password);
         await this.slug.fill(slug);
     }    
+    async fillRegisterNoSlug(email: string, password: string){
+        await this.email.fill(email);
+        await this.password.fill(password);
+    }
+    
     async clickRegister(){
         await this.registerButton.click();
     }

@@ -7,7 +7,8 @@ export const bookingHelper = {
 }
 
 export const bookingDateHelper = {
-    date1: '2026-11-27'
+    date1: '2026-11-27',
+    date2: '2025-05-05'
 }
 
 export const randomRegisterDetails = {
@@ -15,3 +16,12 @@ export const randomRegisterDetails = {
     password: faker.internet.password(),
     slug: 'lakeview-bowls'
 }
+
+// "full:test": "playwright test",
+// "test:headed": "playwright test --headed",
+// "test:debug": "playwright test --debug",
+// "test:ui": "playwright test --ui",
+// "test:smoke": "playwright test --grep @smoke",
+// "test:failed": "playwright test --last-failed",
+// "codegen": "playwright codegen",
+// "report": "playwright show-report",
