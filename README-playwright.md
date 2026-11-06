@@ -80,3 +80,12 @@ npm run test:defect
 - **Registration tests:** checks registration with generated details and validation for invalid registration data.
 - **Page smoke test:** checks the home page title and heading.
 - **Defect tests:** covers booking in the past and registration without a slug.
+
+## Defects
+
+failingTests.spec
+- A user can book in the past - booking is allowed to go through - no error message 
+- Registering without a club slug - cannot join a club or  ake bookings 
+
+Mobile-chromium 
+- booking journey and booking in the past fail on trying to click the rink and time out - only fails on mobile.
