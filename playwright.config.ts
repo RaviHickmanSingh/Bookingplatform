@@ -63,10 +63,11 @@ export default defineConfig({
       dependencies: ['setup'],
     },
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['Pixel 7'], storageState: 'playwright/.auth/user.json',},
+      dependencies: ['setup'],
+    },
     // {
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },

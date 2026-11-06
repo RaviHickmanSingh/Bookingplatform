@@ -14,3 +14,5 @@ test.describe('Booking journey', { tag: '@smoke' }, () => {
         await bookingPage.checkBooking();
     });
 })
+
+//fails on mobile cannot click the rink selector
