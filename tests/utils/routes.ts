@@ -2,5 +2,6 @@ export const routes = {
   home: '/',
   lakeview: '/lakeview-bowls',
   login: '/auth/login',
-  bookings: '/dashboard/bookings'
+  bookings: '/dashboard/bookings',
+  register: '/auth/register'
 } as const;

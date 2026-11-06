@@ -1,6 +1,6 @@
 import { test as setup, expect } from './fixtures';
-import { routes } from './utils/routes';
-import { credentials } from './utils/credentials';
+import { routes } from './routes';
+import { credentials } from './credentials';
 
 
 const authFile = 'playwright/.auth/user.json';

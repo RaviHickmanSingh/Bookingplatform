@@ -39,29 +39,35 @@ export default defineConfig({
     {
       name: 'setup',
       testMatch: /auth\.setup\.ts/,
+      teardown: 'teardown'
+    },
+    {
+      name: 'teardown',
+      testMatch: /auth\.teardown\.ts/,
     },
     {
       name: 'chromium',
+      use: { ...devices['Desktop Chrome'],  storageState: 'playwright/.auth/user.json',},
       dependencies: ['setup'],
-      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      use: { ...devices['Desktop Firefox'], storageState: 'playwright/.auth/user.json',},
       dependencies: ['setup'],
-      use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      use: { ...devices['Desktop Safari'], storageState: 'playwright/.auth/user.json',},
       dependencies: ['setup'],
-      use: { ...devices['Desktop Safari'] },
     },
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['Pixel 7'], storageState: 'playwright/.auth/user.json',},
+      dependencies: ['setup'],
+    },
     // {
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
